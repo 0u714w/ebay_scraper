@@ -12,6 +12,7 @@ bs4 = "*"
 requests = "*"
 gunicorn = "*"
 python-dotenv = "*"
+dj-database-url = "*"
 
 [requires]
 python_version = "3.8"
