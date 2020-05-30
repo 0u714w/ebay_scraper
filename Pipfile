@@ -10,6 +10,7 @@ django = "==3.0"
 pandas = "*"
 bs4 = "*"
 requests = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.8"
