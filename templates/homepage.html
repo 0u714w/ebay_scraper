@@ -1,0 +1,8 @@
+<h1>Ebay Scraper</h1>
+<form name="search" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Search" />
+</form>
+<br>
+<a href="/history">Search History</a>

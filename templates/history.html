@@ -1,0 +1,16 @@
+<body>
+    <h1>History</h1>
+    {% for item in list %}
+    <li>
+        <a href="https://www.ebay.com/sch/i.html?_from=R40&_trksid=p2380057.m570.l1311.R1.TR12.TRC2.A0.H0.X&_nkw={{item.title}}&_sacat=0">{{ item.title }}</a>
+
+    </li>
+    {% endfor %}
+    <br>
+    {% if request.user.is_active %}
+{% endif %}
+</body>
+<br>
+<br>
+<br>
+<a href='/'>Go Back</a>
