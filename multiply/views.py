@@ -28,9 +28,8 @@ def create_csv(keyword):
                     prod_price = str(price.find(text=True, recursive=False))
                     prices.append(prod_price)
         
-        username = getpass.getuser()
         chart = pd.DataFrame({"Name": item_name, "Prices": prices})
-        chart.to_csv(r'/Users/{}/Desktop/{}.csv'.format(username, keyword), index=False)
+        chart.to_csv(r'{}.csv'.format(keyword), index=False)
 
 
 def homepage(request):
