@@ -7,8 +7,6 @@ class GenericFile(models.Model):
     file = models.FileField()
     title = models.CharField(max_length=140)
     csv = models.BooleanField(default=False)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
-    class Meta:
-        model = User
-        fields = ("username",)
     
