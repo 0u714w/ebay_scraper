@@ -26,7 +26,7 @@ SECRET_KEY = "+*&u-&wqjyd$7f)4@kh58x#a&h@9!r4en9+q=08&tgj1(0nm=="
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["https://enigmatic-shore-80563.herokuapp.com/"]
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
