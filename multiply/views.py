@@ -1,12 +1,10 @@
 from django.shortcuts import render, HttpResponseRedirect
 import pandas as pd
 import requests
-import os
 import getpass
 from bs4 import BeautifulSoup
 from multiply.forms import SearchForm
 from multiply.models import GenericFile
-
 
 
 def create_csv(keyword):
@@ -28,20 +26,23 @@ def create_csv(keyword):
                 price = listing.find('span', attrs={'class': "s-item__price"})
                 prod_price = str(price.find(text=True, recursive=False))
                 prices.append(prod_price)
-    sum_num = 0
-    for i in prices:
-        if i == 'None':
-            i = 0
-        else:
-            sum_num = sum_num + int(float(i.replace('$', '').replace(',', '')))
-    avg = sum_num / len(prices)
+
     for num in range(len(prices)):
-        average_price.append(str(round(avg, 2)))
+        average_price.append(str(round(generate_average(prices), 2)))
                     
     username = getpass.getuser()
     chart = pd.DataFrame({"Name": item_name, "Prices": prices, "Average Price": average_price})
     chart.to_csv(r'/Users/{}/Desktop/{}.csv'.format(username, keyword), index=False)
-        
+
+def generate_average(list_to_average):
+    sum_num = 0
+    for i in list_to_average:
+        if i == 'None':
+            i = 0
+        else:
+            sum_num = sum_num + int(float(i.replace('$', '').replace(',', '')))
+    avg = sum_num / len(list_to_average)
+    return avg
 
 def homepage(request):
     html = "homepage.html"
@@ -57,15 +58,13 @@ def homepage(request):
             else:
                 GenericFile.objects.create(title=data['search'])
                 return HttpResponseRedirect(ebay_url)
-            
         else:
             form = SearchForm()
 
     return render(request, html, {'form': form})
 
+
 def history(request):
     html = "history.html"
     items = GenericFile.objects.all().order_by('title')
     return render(request, html, {'list': items})
-    
-    
