@@ -52,6 +52,7 @@ def homepage(request):
                 GenericFile.objects.create(title=data['search'])
                 return HttpResponseRedirect(ebay_url)
             else:
+                GenericFile.objects.create(title=data['search'])
                 return HttpResponseRedirect(ebay_url)
             
         else:
