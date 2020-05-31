@@ -30,7 +30,10 @@ def create_csv(keyword):
                 prices.append(prod_price)
     sum_num = 0
     for i in prices:
-        sum_num = sum_num + int(float(i.replace('$', '').replace(',', '')))
+        if i == 'None':
+            i = 0
+        else:
+            sum_num = sum_num + int(float(i.replace('$', '').replace(',', '')))
     avg = sum_num / len(prices)
     for num in range(len(prices)):
         average_price.append(str(round(avg, 2)))
