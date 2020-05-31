@@ -20,6 +20,7 @@ from multiply.models import GenericFile
 
 admin.site.register(GenericFile)
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", homepage),
