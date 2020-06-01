@@ -37,7 +37,6 @@ def create_csv(keyword):
         average_price.append(str(round(generate_average(prices), 2)))
         outliers.append(detect_outlier(prices_stripped))
 
-
     username = getpass.getuser()
     chart = pd.DataFrame({"Name": item_name, "Prices": prices, "Average Price": average_price, "Outliers": outliers})
     chart.to_csv(r'/Users/{}/Desktop/{}.csv'.format(username, keyword), index=False)
