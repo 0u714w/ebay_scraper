@@ -37,6 +37,9 @@ def create_csv(keyword):
         average_price.append(str(round(generate_average(prices), 2)))
         outliers.append(detect_outlier(prices_stripped))
 
+    if len(average_price) < len(outliers):
+        average_price.append(generate_average(prices_stripped))
+
     username = getpass.getuser()
     chart = pd.DataFrame({"Name": item_name, "Prices": prices, "Average Price": remove_outlier_from_average(outliers, average_price), "Outliers": outliers})
     chart.to_csv(r'/Users/{}/Desktop/{}.csv'.format(username, keyword), index=False)
@@ -46,7 +49,8 @@ def remove_outlier_from_average(outlier_list, average_list):
     for num in average_list:
         for i in outlier_list:
             if i == num:
-                average_list.replace(num, "0")
+                generate_average(average_list.remove(num))
+                
     return average_list
 
 
