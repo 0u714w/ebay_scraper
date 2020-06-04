@@ -8,7 +8,12 @@ This program is designed to scrape active Ebay listings and create a .csv file c
 
 ## Usage
 
-Clone this repo and start up your shell
+Clone this repo
+```
+git clone https://github.com/dougenas/ebay_scraper.git
+```
+
+Start up your shell
 ```
 pipenv shell
 ```
