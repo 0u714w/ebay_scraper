@@ -18,6 +18,11 @@ Start up your shell
 pipenv shell
 ```
 
+Migrate your database
+```
+python3 manage.py migrate
+```
+
 Run the server
 ```
 python3 manage.py runserver
