@@ -18,6 +18,11 @@ Start up your shell
 pipenv shell
 ```
 
+Install your dependencies
+```
+pipenv install
+```
+
 Migrate your database
 ```
 python3 manage.py migrate
