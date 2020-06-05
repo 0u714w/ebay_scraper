@@ -25,7 +25,7 @@ env_path = os.path.join('./', '.env')
 load_dotenv(dotenv_path=env_path, verbose=True, override=True)
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("SECRET_KEY")
+SECRET_KEY = "+*&u-&wqjyd$7f)4@kh58x#a&h@9!r4en9+q=08&tgj1(0nm=="
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
