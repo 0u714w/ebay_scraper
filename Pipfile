@@ -16,6 +16,7 @@ dj-database-url = "*"
 psycopg2-binary = "*"
 whitenoise = "*"
 numpy = "*"
+money-parser = "*"
 
 [requires]
 python_version = "3.8"

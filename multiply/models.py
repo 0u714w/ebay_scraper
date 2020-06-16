@@ -5,6 +5,6 @@ from datetime import datetime
 
 class GenericFile(models.Model):
     title = models.CharField(max_length=140)
-    csv = models.BooleanField(default=False)
-    file = models.FileField(upload_to="files/")
+    csv_active = models.BooleanField(default=False)
+    csv_sold = models.BooleanField(default=False)
 
