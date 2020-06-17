@@ -102,6 +102,8 @@ def homepage(request):
             if data['download_csv_sold'] is True and data['download_csv_active'] is True:
                 create_csv_active(data['search'])
                 create_csv_sold(data['search'])
+                GenericFile.objects.create(title=data['search'])
+                return HttpResponseRedirect('/')
             elif data['download_csv_sold'] is True:
                 create_csv_sold(data['search'])
                 GenericFile.objects.create(title=data['search'])
@@ -121,5 +123,5 @@ def homepage(request):
 
 def history(request):
     html = "history.html"
-    items = GenericFile.objects.all().order_by('title')
+    items = GenericFile.objects.all().order_by('created_date')
     return render(request, html, {'list': items})
