@@ -1,6 +1,6 @@
 # Ebay Scraper
 
-This program is designed to scrape active Ebay listings and create a .csv file containing data from the search. The .csv has four columns which are as follows: product name, price, average price of listings, and outliers.
+This program is designed to scrape active Ebay listings and create a .csv file containing data from the search. The .csv has four columns which are as follows: product name, price, average price of listings, and outliers. You can either grab a .csv of the sold listings, the active listings, or both.
 
 ![](images/main.png)
 ![](images/csv.png)
