@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from multiply.views import homepage, history
+from multiply.views import homepage
 from multiply.models import GenericFile
 
 admin.site.register(GenericFile)
@@ -24,7 +24,6 @@ admin.site.register(GenericFile)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", homepage),
-    path('history/', history)
 
 ]
 

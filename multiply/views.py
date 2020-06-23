@@ -102,26 +102,21 @@ def homepage(request):
             if data['download_csv_sold'] is True and data['download_csv_active'] is True:
                 create_csv_active(data['search'])
                 create_csv_sold(data['search'])
-                GenericFile.objects.create(title=data['search'])
+                
                 return HttpResponseRedirect('/')
             elif data['download_csv_sold'] is True:
                 create_csv_sold(data['search'])
-                GenericFile.objects.create(title=data['search'])
+                
                 return HttpResponseRedirect(sold_url)
             elif data['download_csv_active'] is True:
                 create_csv_active(data['search'])
-                GenericFile.objects.create(title=data['search'])
+                
                 return HttpResponseRedirect(active_url)
             else:
-                GenericFile.objects.create(title=data['search'])
+                
                 return HttpResponseRedirect(active_url)
         else:
             form = SearchForm()
 
     return render(request, html, {'form': form})
 
-
-def history(request):
-    html = "history.html"
-    items = GenericFile.objects.all().order_by('created_date')
-    return render(request, html, {'list': items})
