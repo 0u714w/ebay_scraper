@@ -1,4 +1,5 @@
-from django.shortcuts import render, HttpResponseRedirect
+from django.shortcuts import render, HttpResponseRedirect, HttpResponse
+from django.http import JsonResponse
 import pandas as pd
 import requests
 import getpass
@@ -55,7 +56,8 @@ def create_csv_sold(keyword):
     # username = getpass.getuser()
     chart = pd.DataFrame({"Name": item_name, "Prices": prices, "Average Price": helpers.remove_outlier_from_average(outliers, average_price), "Outliers": outliers})
     # chart.to_csv(r'/Users/{}/Desktop/{}_sold.csv'.format(username, keyword), index=False)
-    r = requests.post('https://ops.multiplytechnology.com/ops4/api/scraper', data = {'chart': chart.to_json()})
+    return JsonResponse(chart.to_json());
+    # r = requests.post('https://ops.multiplytechnology.com/ops4/api/scraper', data = {'chart': chart.to_json()})
 
 @csrf_exempt
 def create_csv_active(keyword):
