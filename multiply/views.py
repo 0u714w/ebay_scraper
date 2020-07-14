@@ -56,7 +56,7 @@ def create_csv_sold(keyword):
     # username = getpass.getuser()
     chart = pd.DataFrame({"Name": item_name, "Prices": prices, "Average Price": helpers.remove_outlier_from_average(outliers, average_price), "Outliers": outliers})
     # chart.to_csv(r'/Users/{}/Desktop/{}_sold.csv'.format(username, keyword), index=False)
-    return JsonResponse(chart.to_json(), safe=False);
+    return chart
     # r = requests.post('https://ops.multiplytechnology.com/ops4/api/scraper', data = {'chart': chart.to_json()})
 
 @csrf_exempt
@@ -106,8 +106,9 @@ def homepage(request):
             active_url = "https://www.ebay.com/sch/i.html?_from=R40&_trksid=p2380057.m570.l1311.R1.TR12.TRC2.A0.H0.X&_nkw={}&_sacat=0".format(data['search'])
             sold_url = "https://www.ebay.com/sch/i.html?_from=R40&_nkw={}&_in_kw=1&_ex_kw=&_sacat=0&LH_Sold=1&_udlo=&_udhi=&_samilow=&_samihi=&_sadis=15&_stpos=46201&_sargn=-1%26saslc%3D1&_salic=1&_sop=12&_dmd=1&_ipg=50&LH_Complete=1&_fosrp=1".format(data['search'])
 
-            create_csv_sold(data['search'])    
-            return HttpResponseRedirect(sold_url)
+            chart = create_csv_sold(data['search'])    
+            return JsonResponse({'url': sold_url, 'chart' : chart.to_json()}, safe=False);
+            # return HttpResponseRedirect(sold_url)
             
             if data['download_csv_sold'] is True and data['download_csv_active'] is True:
                 create_csv_active(data['search'])
