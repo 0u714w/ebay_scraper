@@ -49,9 +49,11 @@ def create_csv_sold(keyword):
     if len(average_price) < len(outliers):
         average_price.append(helpers.generate_average(prices_stripped))
 
-    username = getpass.getuser()
+
+    # username = getpass.getuser()
     chart = pd.DataFrame({"Name": item_name, "Prices": prices, "Average Price": helpers.remove_outlier_from_average(outliers, average_price), "Outliers": outliers})
-    chart.to_csv(r'/Users/{}/Desktop/{}_sold.csv'.format(username, keyword), index=False)
+    # chart.to_csv(r'/Users/{}/Desktop/{}_sold.csv'.format(username, keyword), index=False)
+    r = requests.post('https://ops.multiplytechnology.com/ops4/api/scraper', data = {'chart': chart.to_json()})
 
 
 def create_csv_active(keyword):
