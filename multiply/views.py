@@ -7,8 +7,10 @@ from multiply.forms import SearchForm
 from multiply.models import GenericFile
 from services import helpers
 import re
+from django.views.decorators.csrf import csrf_exempt
 
 
+@csrf_exempt
 def create_csv_sold(keyword):
     item_name = []
     prices = []
@@ -55,7 +57,7 @@ def create_csv_sold(keyword):
     # chart.to_csv(r'/Users/{}/Desktop/{}_sold.csv'.format(username, keyword), index=False)
     r = requests.post('https://ops.multiplytechnology.com/ops4/api/scraper', data = {'chart': chart.to_json()})
 
-
+@csrf_exempt
 def create_csv_active(keyword):
     item_name = []
     prices = []
@@ -92,7 +94,7 @@ def create_csv_active(keyword):
     chart = pd.DataFrame({"Name": item_name, "Prices": prices, "Average Price": helpers.remove_outlier_from_average(outliers, average_price), "Outliers": outliers})
     chart.to_csv(r'/Users/{}/Desktop/{}_active.csv'.format(username, keyword), index=False)
 
-
+@csrf_exempt
 def homepage(request):
     html = "homepage.html"
     form = SearchForm(request.POST)
