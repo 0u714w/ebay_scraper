@@ -16,3 +16,8 @@ body {
 a {
     color: indianred;
 }
+
+div {
+    margin: auto;
+    width: 50%;
+}
