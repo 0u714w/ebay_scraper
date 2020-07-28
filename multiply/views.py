@@ -114,10 +114,15 @@ def homepage(request):
                 pass
 
             elif data['download_csv_sold'] is True:
-                chart = create_csv_sold(data['search']).to_html() 
+                chart = create_csv_sold(data['search']).to_html()
+                if data.get('response_type', 'Not Found') == 'json': 
+                    return JsonResponse({'url': sold_url, 'chart' : chart.to_json()}, safe=False)
+                
                 
             elif data['download_csv_active'] is True:
                 chart = create_csv_active(data['search']).to_html()
+                if data.get('response_type', 'Not Found') == 'json': 
+                    return JsonResponse({'url': active_url, 'chart' : chart.to_json()}, safe=False)
                 
             else:
                 return HttpResponseRedirect(active_url)
