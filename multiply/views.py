@@ -104,6 +104,7 @@ def homepage(request):
     html = "homepage.html"
     form = SearchForm(request.POST)
     chart = None
+    table = None
     if request.method == 'POST':
         if form.is_valid():
             data = form.cleaned_data
@@ -117,18 +118,18 @@ def homepage(request):
                 chart = create_csv_sold(data['search'])
                 if data.get('response_type', 'table') is 'json': 
                     return JsonResponse({'url': sold_url, 'chart' : chart.to_json()}, safe=False)
-                chart = chart.to_html()
+                table = chart.to_html()
                 
             elif data['download_csv_active'] is True:
                 chart = create_csv_active(data['search'])
                 if data.get('response_type', 'table') is 'json': 
                     return JsonResponse({'url': active_url, 'chart' : chart.to_json()}, safe=False)
-                chart = chart.to_html()
+                table = chart.to_html()
                 
             else:
                 return HttpResponseRedirect(sold_url)
         else:
             form = SearchForm()
 
-    return render(request, html, {'form': form, 'table': chart})
+    return render(request, html, {'form': form, 'table': table})
 
