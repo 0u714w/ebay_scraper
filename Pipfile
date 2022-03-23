@@ -6,7 +6,7 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-django = "==3.0.3"
+django = "==3.1.14"
 pandas = "*"
 bs4 = "*"
 requests = "*"
