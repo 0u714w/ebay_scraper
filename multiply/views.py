@@ -108,6 +108,7 @@ def homepage(request):
     html = "homepage.html"
     form = SearchForm(request.POST)
     chart = None
+    table = None
     if request.method == 'POST':
         if form.is_valid():
             data = form.cleaned_data
@@ -118,27 +119,21 @@ def homepage(request):
                 pass
 
             elif data['download_csv_sold'] is True:
-                chart = create_csv_sold(data['search']).to_html()
-                username = getpass.getuser()
-
-                create_csv_sold(data['search']).to_csv(r'/Users/{}/Desktop/{}_sold.csv'.format(username, data['search']), index=False)
-                if data.get('response_type', 'Not Found') == 'json': 
+                chart = create_csv_sold(data['search'])
+                if data.get('response_type', 'table') is 'json': 
                     return JsonResponse({'url': sold_url, 'chart' : chart.to_json()}, safe=False)
-                
+                table = chart.to_html()
                 
             elif data['download_csv_active'] is True:
-                chart = create_csv_active(data['search']).to_html()
-                username = getpass.getuser()
-
-                create_csv_active(data['search']).to_csv(r'/Users/{}/Desktop/{}_active.csv'.format(username, data['search']), index=False)
-
-                if data.get('response_type', 'Not Found') == 'json': 
+                chart = create_csv_active(data['search'])
+                if data.get('response_type', 'table') is 'json': 
                     return JsonResponse({'url': active_url, 'chart' : chart.to_json()}, safe=False)
+                table = chart.to_html()
                 
             else:
-                return HttpResponseRedirect(active_url)
+                return HttpResponseRedirect(sold_url)
         else:
             form = SearchForm()
 
-    return render(request, html, {'form': form, 'table': chart})
+    return render(request, html, {'form': form, 'table': table})
 
