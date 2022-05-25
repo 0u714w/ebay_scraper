@@ -13,4 +13,5 @@ class SearchForm(forms.Form):
     
     class Meta:
         model = GenericFile
+        fields = ('item')
 

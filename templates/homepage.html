@@ -2,10 +2,10 @@
 <link rel="stylesheet" href="{% static 'style.css' %}">
 <h1>Ebay Scraper</h1>
 <img src="/static/scraper.jpg">
-<form name="search" method="POST">
+<form name="search" method="POST" id="item">
     {% csrf_token %}
     {{ form.as_p }}
-<input type="submit" value="Search" />
+<button type="submit" id="submit_button">Search</button>
 </form>
 <br>
 <div>

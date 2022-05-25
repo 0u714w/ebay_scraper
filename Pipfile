@@ -17,6 +17,8 @@ whitenoise = "*"
 numpy = "*"
 money-parser = "*"
 json2html = "*"
+jinja2 = "*"
+selenium = "*"
 
 [requires]
 python_version = "3.7.3"

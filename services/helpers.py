@@ -32,3 +32,6 @@ def remove_outlier_from_average(outlier_list, average_list):
                 generate_average(average_list.remove(num))
                 
     return average_list
+
+def make_clickable(val1, val2):
+    return '<a target="_blank" href="{}">{}</a>'.format(val1, val2)

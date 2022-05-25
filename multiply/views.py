@@ -32,6 +32,8 @@ def create_csv_sold(keyword):
             if(str(name.find(text=True, recursive=False)) != "None"):
                 prod_name = str(name.find(text=True, recursive=False))
                 item_name.append(prod_name)
+                link = name['href']
+                print(link)
             if(prod_name != " "):
                 price = listing.find('span', attrs={'class': "bold bidsold"})
                 price_to = listing.find('span', attrs={'class': "prRange"})
@@ -58,7 +60,6 @@ def create_csv_sold(keyword):
 
     if len(average_price) < len(outliers):
         average_price.append(helpers.generate_average(prices_stripped))
-    
 
 
     # username = getpass.getuser()
