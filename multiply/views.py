@@ -9,7 +9,7 @@ from multiply.models import GenericFile
 from services import helpers
 import re
 from django.views.decorators.csrf import csrf_exempt
-from pandas.io.json import json_normalize
+from pandas import json_normalize
 
 
 
